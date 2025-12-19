@@ -324,9 +324,9 @@ class AsrTask(TaskInterface[AsrTaskConfig]):
         builder: DataPipelineBuilder, example_shuffle_window: int, seed: int
     ) -> DataPipelineBuilder:
         """Shuffles samples (pre-batching operation)."""
-        assert example_shuffle_window > 0, (
-            "Shuffling the entire dataset can result in OOM, set `example_shuffle_window` > 0 to shuffle inside a window."
-        )
+        assert (
+            example_shuffle_window > 0
+        ), "Shuffling the entire dataset can result in OOM, set `example_shuffle_window` > 0 to shuffle inside a window."
 
         if example_shuffle_window != 1:
             builder.shuffle(example_shuffle_window, seed)
@@ -337,9 +337,9 @@ class AsrTask(TaskInterface[AsrTaskConfig]):
         builder: DataPipelineBuilder, batch_shuffle_window: int, seed: int
     ) -> DataPipelineBuilder:
         """Shuffles batches, not samples (post-batching operation)."""
-        assert batch_shuffle_window > 0, (
-            "Shuffling the entire dataset can result in OOM, set `batch_shuffle_window` > 0 to shuffle inside a window."
-        )
+        assert (
+            batch_shuffle_window > 0
+        ), "Shuffling the entire dataset can result in OOM, set `batch_shuffle_window` > 0 to shuffle inside a window."
 
         if batch_shuffle_window != 1:
             builder.shuffle(batch_shuffle_window, seed)

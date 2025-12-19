@@ -453,9 +453,9 @@ class Wav2Vec2LlamaModel(AsrModel):
             lang_id_ = [0] * batch_size
         elif self.lang_embeddings_p > 0.0 and self.language_column_name in example:
             lang_array = example[self.language_column_name]
-            assert len(lang_array) == batch_size, (
-                f"lang array length {len(lang_array)} != {batch_size} (should be batch size)"
-            )
+            assert (
+                len(lang_array) == batch_size
+            ), f"lang array length {len(lang_array)} != {batch_size} (should be batch size)"
             lang_id_ = list(map(self._lang_id_getter, lang_array))
         else:
             raise ValueError("lang not in batch, but lang_embeddings_p > 0.0")
